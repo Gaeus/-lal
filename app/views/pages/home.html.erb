@@ -1,7 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+
+
 <% @hideouts.each do |hideout| %>
-<%= hideout.title %>
-<%= hideout.overview %>
-<%= hideout.price %>
+<div class="container">
+  <div class="row">
+    <div class="column">
+      <img src="<%= hideout.cover_picture %>" alt="Cover Picture">
+      <h2><%= hideout.title %></h2>
+        <p><%= hideout.overview %></p>
+        <ul>
+          <li><%= hideout.price %></li>
+        </ul>
+    </div>
+  </div>
+</div>
+
 <% end %>
