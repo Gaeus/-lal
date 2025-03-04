@@ -1,0 +1,15 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>You want to book</h2>
+    <%= simple_form_for [@hideout, @booking] do |f| %>
+    <%= f.input :date_start %>
+    <%= f.input :date_end %>
+    <%= f.submit "Submit Review" %>
+    <% end %>
+
+
+    </div>
+  </div>
+</div>
