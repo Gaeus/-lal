@@ -1,7 +1,7 @@
 class Hideout < ApplicationRecord
   has_many :booking
-  has_many :user
-  
+  belongs_to :user
+
   validates :user, presence: true
   validates :address, presence: true, length: { in: 6..50 }, uniqueness: true
   validates :price, presence: true, numericality: true
