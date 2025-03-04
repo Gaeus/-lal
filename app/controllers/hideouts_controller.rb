@@ -8,12 +8,13 @@ class HideoutsController < ApplicationController
   end
 
   def new
-    @hideout = Hideout.new()
+    @hideout = Hideout.new
   end
 
   def create
     @hideout = Hideout.new(hideout_params)
-    if @bookmark.save
+    @hideout.user = current_user
+    if @hideout.save
       redirect_to @hideout
     else
       render :new, status: :unprocessable_entity
@@ -21,6 +22,10 @@ class HideoutsController < ApplicationController
   end
 
   def edit
+    @hideout = Hideout.find(params[:id])
+  end
+
+  def update
     @hideout = Hideout.find(params[:id])
     @hideout.update(hideout_params)
     redirect_to hideout_path(@hideout)

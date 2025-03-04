@@ -1,1 +1,22 @@
 <h2> NEW PAGE </h2>
+
+<%= simple_form_for @hideout do |f| %>
+  <%= f.input :title,
+              required: true,
+              autofocus: true,
+              input_html: { autocomplete: "title" } %>
+  <%= f.input :address,
+              required: true,
+              input_html: { autocomplete: "address" } %>
+  <%= f.input :overview,
+              required: true,
+              input_html: { autocomplete: "overview" } %>
+  <%= f.input :price,
+              required: true,
+              input_html: { autocomplete: "price" } %>
+  <%= f.input :cover_picture,
+              required: true %>
+  <%= f.input :pictures,
+              required: false %>
+  <%= f.button :submit %>
+<% end %>
