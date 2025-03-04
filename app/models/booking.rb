@@ -7,4 +7,6 @@ class Booking < ApplicationRecord
   validates :status, presence: true
   validates :hideout, presence: true
   validates :user, presence: true
+
+
 end
