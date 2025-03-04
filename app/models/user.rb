@@ -10,6 +10,5 @@ class User < ApplicationRecord
   validates :nickname, presence: true, length: { maximum: 20 }
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence:true, length: { maximum: 30 }
-  validates :picture, presence: true
 
 end
