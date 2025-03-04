@@ -20,10 +20,10 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "firstname" }%>
-    <%= f.input :is_public,
-                required: true,
+    <%= f.input :picture,
+                required: false,
                 autofocus: true,
-                input_html: { autocomplete: "lis_public?" }%>
+                input_html: { autocomplete: "picture" }%>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -31,6 +31,10 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.input :is_public,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "is_public?" }%>
   </div>
 
   <div class="form-actions">
