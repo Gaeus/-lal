@@ -7,7 +7,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    
+
     @booking = Booking.new(booking_params)
     @booking.hideout = @hideout
     @booking.user = current_user
@@ -19,15 +19,15 @@ class BookingsController < ApplicationController
     end
   end
 
-  def accept
-    @booking = Booking.find(params[:id])
-    @booking.status = :accepted
-  end
+  # def accept
+  #   @booking = Booking.find(params[:id])
+  #   @booking.status = :accepted
+  # end
 
-  def decline
-    @booking = Booking.find(params[:id])
-    @booking.status = :declined
-  end
+  # def decline
+  #   @booking = Booking.find(params[:id])
+  #   @booking.status = :declined
+  # end
 
   private
 
