@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :hideout
-  has_many :booking
+  has_many :hideouts
+  has_many :bookings
 
-  validates :nickname, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :nickname, presence: true, length: { maximum: 30 }
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence:true, length: { maximum: 30 }
 
