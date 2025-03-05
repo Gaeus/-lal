@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :hideouts
   has_many :bookings
 
-  validates :nickname, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :nickname, presence: true, length: { maximum: 30 }
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence:true, length: { maximum: 30 }
 
