@@ -5,10 +5,13 @@
       <ul>
         <% current_user.hideouts.each do |hideout| %>
           <div>
+            <img src="<%= hideout.cover_picture %>" alt="Main photo">
             <li><%= hideout.title %></li>
             <li><%= hideout.overview %></li>
             <li><%= hideout.price %></li>
-            <%= link_to "Edit", edit_hideout_path(hideout), class: "btn btn-primary" %>
+            <%= link_to "Modifier", edit_hideout_path(hideout), class: "btn btn-primary" %>
+            <% confirm = hideout.bookings  ? "Are you sure?"  : "You can't delete a Hideout if their is reservations on it" %>
+            <%= link_to "Supprimer", hideout_path(hideout) ,data: {turbo_confirm: confirm, turbo_method: :delete}, class: "btn btn-danger" %>
           </div>
           <br>
         <% end %>
