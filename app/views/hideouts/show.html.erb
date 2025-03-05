@@ -1,15 +1,19 @@
-<h2> SHOW PAGE </h2>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-    <img src="<%=  @hideout.cover_picture %>" alt="Cover Image">
-    <h2><%= @hideout.title %></h2>
-    <p><%= @hideout.overview %></p>
-    <ul>
-    <li><%= @hideout.address %></li>
-    <li><%= @hideout.price %></li>
-    </ul>
+<div class="container-local">
+  <h2> SHOW PAGE </h2>
+  <div class="show-hideout">
+    <div>
+      <img src="<%=  @hideout.cover_picture %>" alt="Cover Image">
+    </div>
+    <div class=show-hideout-content>
+      <div>
+        <h2><%= @hideout.title %></h2>
+        <p><%= @hideout.address %></p>
+        <p><%= @hideout.overview %></p>
+      </div>
+      <div>
+        <p class="text-right"><%= @hideout.price %> €</p>
+        <%= link_to "Réserver", new_hideout_booking_path(@hideout), class:"btn btn-primary" %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,36 @@
+.card-hideout {
+  background-color: rgb(226, 226, 226);
+  padding : 15px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.725) ;
+
+    .card-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgb(63, 63, 63);
+      text-shadow: 1px 1px 1px rgba(47, 47, 47, 0.442) ;
+    }
+
+    li{
+      list-style: none;
+    }
+
+
+    img {
+      height: 200px;
+      object-fit: cover;
+      max-width: 100%;
+      min-width: 100%;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.703);
+      border-radius: 10px;
+      margin-bottom: 5px;
+    }
+}
+
+.cards-hideouts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+}

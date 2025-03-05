@@ -1,18 +1,23 @@
-
-<h1>Home Page</h1>
-
-<% @hideouts.each do |hideout| %>
-<div class="container">
-  <div class="row">
-    <div class="column">
-      <img src="<%= hideout.cover_picture %>" alt="Cover Picture">
-      <h2><%= hideout.title %></h2>
-        <p><%= hideout.overview %></p>
-        <ul>
-          <li><%= hideout.price %></li>
-        </ul>
-    </div>
+<div class="container-local">
+  <h2> Hideouts </h2>
+  <div class="cards-hideouts">
+    <% @hideouts.each do |hideout| %>
+      <%= link_to hideout_path(hideout), class: 'link_to' do %>
+      <div class="card-hideout">
+        <div class="card-img">
+          <img src="<%= hideout.cover_picture %>" alt="Cover Picture">
+        </div>
+        <div class="card-body">
+          <div>
+            <h2><%= hideout.title %></h2>
+            <p><%= hideout.overview %></p>
+          </div>
+          <div>
+              <p><%= hideout.price %></p>
+          </div>
+        </div>
+      </div>
+      <%end%>
+    <% end %>
   </div>
 </div>
-
-<% end %>
