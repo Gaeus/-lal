@@ -90,7 +90,15 @@ def seed_user_profile(id)
       domain = domain.delete('.')
     end
 
-    puts "#{usermail}@#{domain}.com",
+    puts "#{usermail}@#{domain}.com"
+    biens = []
+    biens << data['work']['base'].split(',').first unless data['work']['base'] == "-"
+    puts "=============== DEBUT DU DEBOGGUE ===================="
+    puts ""
+    p biens
+    puts ""
+    puts "=============== FIN DU DEBOGGUE ===================="
+
     new_user = User.create!({
       nickname: data['name'],
       first_name: first_name,
@@ -98,18 +106,26 @@ def seed_user_profile(id)
       # home: data.dig('work', 'base'), # potentiellement inutilse, mais cool de l'avoir au cas ou
       password: "azerty",
       email: "#{usermail}@#{domain}.com",
-      properties: data.dig('work', 'base'),
+      properties: biens, # redondant?
       picture: data.dig('image', 'url'),
       is_public: false
     })
     puts "#{new_user.nickname} a été ajouté à la base de donnée, cet utilisateur a #{new_user.properties.count} repères " if new_user.persisted?
+
+    puts "=============== DEBUT DU DEBOGGUE ===================="
+    puts ""
+    puts "il possède : #{biens.class} "
+    puts "il possède : #{new_user.properties} "
+    puts ""
+    puts "=============== FIN DU DEBOGGUE ===================="
+
   else
     [] # current_id += 1   if response != success une boucle en plus
     puts "il n'y a pas d'utilisateur associé à l'id #{id} à ajouté à la base de donnée"
   end
 end
 
-unique_ids = (1..732).to_a.sample(30)
+unique_ids = (1..732).to_a.sample(50)
 unique_ids.each do |id|
   seed_user_profile(id)
 end
