@@ -2,15 +2,19 @@
   background-color: rgb(226, 226, 226);
   padding : 15px;
   width: 100%;
+  // height: 100%;
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.725) ;
 
     .card-body {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-end;
+      // height: 100%;
+      height: 150px;
       color: rgb(63, 63, 63);
       text-shadow: 1px 1px 1px rgba(47, 47, 47, 0.442) ;
+
     }
 
     li{

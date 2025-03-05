@@ -1,5 +1,5 @@
 <div class="container-local">
-  <h2> Hideouts </h2>
+  <h2>Repères</h2>
   <div class="cards-hideouts">
     <% @hideouts.each do |hideout| %>
       <%= link_to hideout_path(hideout), class: 'link_to' do %>
@@ -8,12 +8,12 @@
           <img src="<%= hideout.cover_picture %>" alt="Cover Picture">
         </div>
         <div class="card-body">
-          <div>
-            <h2><%= hideout.title %></h2>
+          <div class="overflow-body">
+            <h2><%= hideout.title.split(";").first %></h2>
             <p><%= hideout.overview %></p>
           </div>
           <div>
-              <p><%= hideout.price %></p>
+              <p><%= hideout.price %>€</p>
           </div>
         </div>
       </div>
