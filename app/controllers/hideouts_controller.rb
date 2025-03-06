@@ -1,7 +1,7 @@
+
 class HideoutsController < ApplicationController
 
   skip_before_action :authenticate_user!, only: :show
-
 
   def show
     @hideout = Hideout.find(params[:id])
@@ -10,6 +10,7 @@ class HideoutsController < ApplicationController
 
   def new
     @hideout = Hideout.new
+    
   end
 
   def create

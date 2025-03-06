@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
+  include PgSearch::Model
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -11,7 +12,5 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 30 }
   validates :last_name, presence:true, length: { maximum: 30 }
 
-
-
-
+  multisearchable against: [:nickname, :first_name, :last_name]
 end
