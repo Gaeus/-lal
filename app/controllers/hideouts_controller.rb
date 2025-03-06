@@ -1,13 +1,16 @@
+
 class HideoutsController < ApplicationController
 
   skip_before_action :authenticate_user!, only: :show
 
   def show
     @hideout = Hideout.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
     @hideout = Hideout.new
+    
   end
 
   def create

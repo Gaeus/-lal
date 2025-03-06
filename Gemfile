@@ -1,9 +1,10 @@
+
 source "https://rubygems.org"
 
 ruby "3.3.5"
 
 # Gem Adrien
-
+gem 'flatpickr'
 gem "devise"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
