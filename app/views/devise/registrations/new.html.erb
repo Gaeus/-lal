@@ -23,7 +23,7 @@
                     required: true,
                     autofocus: true,
                     input_html: { autocomplete: "firstname" }%>
-        <%= f.input :picture,
+        <%= f.input :avatar, as: :file,
                     required: false,
                     autofocus: true,
                     input_html: { autocomplete: "picture" }%>

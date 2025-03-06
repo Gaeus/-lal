@@ -1,11 +1,38 @@
 <div class="container-local">
   <h2> SHOW PAGE </h2>
-          <img src="<%=  @hideout.user.picture %>" alt="avatar" class ="avatar-large">
+          <% if @hideout.user.avatar.attached? %>
+              <%= cl_image_tag @hideout.user.avatar.key, class:"avatar-large", alt:"avatar" %>
+            <% else %>
+              <%= image_tag "user_icon.png", class:"avatar-large", alt: "avatar" %>
+            <% end %>
         <p>Pour plus d'informations, vous pouvez contactez <%=@hideout.user.nickname %> : <%=@hideout.user.email %></p>
   <div class="show-hideout">
-    <div>
-      <img src="<%=  @hideout.cover_picture %>" alt="Cover Image">
-    </div>
+    <% if @hideout.pictures.attached? %>
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= cl_image_tag @hideout.cover_picture.key, alt:"Cover picture" %>
+          </div>
+          <% @hideout.pictures.each do |picture| %>
+            <div class="carousel-item">
+              <%= cl_image_tag picture.key, alt:"Pictures" %>
+            </div>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <% else %>
+        <div>
+          <%= cl_image_tag @hideout.cover_picture.key%>
+        </div>
+    <% end %>
     <div class=show-hideout-content>
       <div>
         <h2><%= @hideout.title %></h2>

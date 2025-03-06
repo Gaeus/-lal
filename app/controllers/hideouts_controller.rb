@@ -42,6 +42,6 @@ class HideoutsController < ApplicationController
   private
 
   def hideout_params
-    params.require(:hideout).permit(:title, :address, :price, :overview, :cover_picture, :pictures)
+    params.require(:hideout).permit(:title, :address, :price, :overview, :cover_picture, pictures:[])
   end
 end
