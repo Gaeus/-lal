@@ -5,6 +5,7 @@ class HideoutsController < ApplicationController
 
   def show
     @hideout = Hideout.find(params[:id])
+    @booking = Booking.new
   end
 
   def new

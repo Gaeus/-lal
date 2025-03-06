@@ -14,8 +14,19 @@
       </div>
       <div>
         <p class="text-right"><%= @hideout.price %> €</p>
-        <%= link_to "Réserver", new_hideout_booking_path(@hideout), class:"btn btn-primary" %>
       </div>
     </div>
   </div>
 </div>
+
+
+<% if current_user != @hideout.user %>
+
+  <div data-controller="toggle" class="mt-5">
+      <button data-action="click->toggle#fire" class="btn btn-outline-primary">Reserver</button>
+    <div data-toggle-target="togglableElement" class="d-none">
+      <%= render "shared/form_reservation", booking: @booking, hideout: @hideout %>
+    </div>
+  </div>
+<% end %>
+<%= console %>

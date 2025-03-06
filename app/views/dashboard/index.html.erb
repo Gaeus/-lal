@@ -10,7 +10,7 @@
             <li><%= hideout.overview %></li>
             <li><%= hideout.price %></li>
             <%= link_to "Modifier", edit_hideout_path(hideout), class: "btn btn-primary" %>
-            <% confirm = hideout.bookings  ? "Are you sure?"  : "You can't delete a Hideout if their is reservations on it" %>
+            <% confirm = hideout.bookings  ? "You can't delete a Hideout if their is reservations on it"  : "Are you sure?" %>
             <%= link_to "Supprimer", hideout_path(hideout) ,data: {turbo_confirm: confirm, turbo_method: :delete}, class: "btn btn-danger" %>
           </div>
           <br>
