@@ -3,6 +3,7 @@
     <div class="col">
     <h2> NEW PAGE </h2>
     <%= simple_form_for @hideout do |f| %>
+      <%= f.error_notification %>
       <%= f.input :title,
                   required: true,
                   autofocus: true,
@@ -16,9 +17,9 @@
       <%= f.input :price,
                   required: true,
                   input_html: { autocomplete: "price" } %>
-      <%= f.input :cover_picture,
+      <%= f.input :cover_picture, as: :file,
                   required: true %>
-      <%= f.input :pictures,
+      <%= f.input :pictures, as: :file, input_html: { multiple: true },
                   required: false %>
       <%= f.button :submit %>
       <% end %>

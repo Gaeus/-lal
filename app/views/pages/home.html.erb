@@ -5,7 +5,7 @@
       <%= link_to hideout_path(hideout), class: 'link_to' do %>
       <div class="card-hideout">
         <div class="card-img">
-          <img src="<%= hideout.cover_picture %>" alt="Cover Picture">
+          <%= cl_image_tag hideout.cover_picture.key%>
         </div>
         <div class="card-body">
           <div class="overflow-body">
