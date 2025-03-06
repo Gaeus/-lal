@@ -11,6 +11,10 @@ class Hideout < ApplicationRecord
   validates :overview, presence: true, length: { maximum: 500 }
   validates :title, presence: true, length: { in: 1..150 } # , uniqueness: true /Gaeus : disabled for testing
   validates :cover_picture, presence: true
-  multisearchable against: [:title, :overview]
-
+  # multisearchable against: [:title, :overview]
+  pg_search_scope :search_by_title_and_overview,
+  against: [ :title, :overview ],
+  using: {
+    tsearch: { prefix: true } # <-- now `superman batm` will return something!
+  }
 end
