@@ -8,7 +8,7 @@
         <p>Pour plus d'informations, vous pouvez contactez <%=@hideout.user.nickname %> : <%=@hideout.user.email %></p>
   <div class="show-hideout">
     <% if @hideout.pictures.attached? %>
-      <div id="carouselExample" class="carousel slide">
+      <div id="carouselExample" class="carousel slide carousel-radius">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <%= cl_image_tag @hideout.cover_picture.key, alt:"Cover picture" %>

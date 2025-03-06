@@ -7,9 +7,17 @@
     object-fit: cover;
     max-width: 100%;
     min-width: 100%;
-    margin-bottom: 10px;
   }
 
+}
+
+.carousel {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  z-index: 1;
 }
 
 .show-hideout-content {
@@ -17,6 +25,10 @@
   justify-content: space-between;
   align-items: center;
   margin-right: 20px;
+
+  h2 {
+    margin-top: 10px;
+  }
 }
 
 .text-right {
