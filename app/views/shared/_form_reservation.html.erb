@@ -1,7 +1,8 @@
 <div data-controller="flatpickr" class="container">
   <div class="row">
     <div class="col">
-      <h2>You want to book</h2>
+
+      <h2 class="margin-reservation-h2">You want to book</h2>
       <%= simple_form_for [hideout, booking] do |f| %>
         <%= f.input :date_start, as: :string,
         input_html: { data: { flatpickr_target: "dateStart" } } %>
