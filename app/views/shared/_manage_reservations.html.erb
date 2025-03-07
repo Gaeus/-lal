@@ -1,0 +1,19 @@
+<h2>Mes biens en location :</h2>
+<ul>
+  <% current_user.hideouts.each do |hideout| %>
+    <% hideout.bookings.each do |booking| %>
+      <div>
+        <li>Commence: <%= booking.date_start %></li>
+        <li>Se termine: <%= booking.date_end %></li>
+        <li>Status: <%= booking.status.capitalize %></li>
+        <li>Prix: <%= booking.price %>€</li>
+
+        <% if booking.status == "pending" %>
+        <%= link_to "Accept", accept_hideout_booking_path(hideout_id: hideout.id, id: booking.id), data: {turbo_method: :patch} , class: "btn btn-success" %>
+        <%= link_to "Decline", decline_hideout_booking_path(hideout_id: hideout.id, id: booking.id), data: {turbo_method: :patch}, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+      <br>
+    <% end %>
+  <% end %>
+</ul>

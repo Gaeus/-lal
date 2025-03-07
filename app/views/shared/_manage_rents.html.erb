@@ -1,0 +1,13 @@
+<h2>Your Reservations are:</h2>
+<ul>
+  <% current_user.bookings.each do |booking| %>
+    <div>
+      <h4><%= booking.hideout.title %></h4>
+      <li>Start Date: <%= booking.date_start %></li>
+      <li>End Date: <%= booking.date_end %></li>
+      <li>Status: <%= booking.status.capitalize %></li>
+      <li>Price: <%= booking.price %>€</li>
+    </div>
+    <br>
+  <% end %>
+</ul>
