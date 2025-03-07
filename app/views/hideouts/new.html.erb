@@ -21,10 +21,10 @@
                   required: true,
                   input_html: { autocomplete: "Prix" } %>
       <%= f.input :cover_picture, as: :file,
-                  label: "Photo de Présentation",
+                  label: "Photo de présentation",
                   required: true %>
       <%= f.input :pictures, as: :file,
-                  label: "Photos de Déscription",
+                  label: "Photos de description",
                   input_html: { multiple: true },
                   required: false %>
       <%= f.button :submit, class: "btn btn-primary", value: "Enregistrer" %>

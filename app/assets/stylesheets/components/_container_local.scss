@@ -4,6 +4,10 @@
   width: 80vw;
   margin: 0 auto;
 }
+.center-form-hideout {
+  display: flex;
+  justify-content: center;
+}
 
 .navbar-local {
   display: flex;
@@ -13,4 +17,30 @@
 .footer-local {
   display: flex;
   justify-content: space-between;
+}
+
+.container-edit-hideout-form {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.container-edit-user-form {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+}
+.center-form-user {
+  display: flex;
+  justify-content: center;
+}
+
+.container-edit-signup-form {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+}
+.center-form-signup {
+  display: flex;
+  justify-content: center;
 }
