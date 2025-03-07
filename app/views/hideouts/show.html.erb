@@ -4,7 +4,7 @@
       <% if @hideout.user.avatar.attached? %>
         <%= cl_image_tag @hideout.user.avatar.key, class:"avatar-large avatar-border", alt:"avatar" %>
       <% else %>
-        <%= image_tag "user_icon.png", class:"avatar-large", alt: "avatar" %>
+        <%= image_tag "user_icon.png", class:"avatar-large avatar-border", alt: "avatar" %>
       <% end %>
     </div>
     <p>Pour plus d'informations, vous pouvez contactez <strong><%=@hideout.user.nickname.capitalize %></strong> : <a href="mailto:<%=@hideout.user.email%>"><i><%=@hideout.user.email %></i></a></p>
