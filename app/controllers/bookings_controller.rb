@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
     @booking.hideout = @hideout
     @booking.user = current_user
     number_of_nights = (@booking.date_end - @booking.date_start).to_i
-    @booking.price = number_of_nights * @hideout.price
+    @booking. price = number_of_nights * @hideout.price
     @booking.status = "pending"
     if @booking.save
       redirect_to hideout_path(@hideout)
