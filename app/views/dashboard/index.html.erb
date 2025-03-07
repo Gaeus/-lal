@@ -28,17 +28,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>Your Hideout Reservations are:</h2>
-      <ul>
-        <% current_user.hideouts.each do |hideout| %>
-          <% hideout.bookings.each do |booking| %>
-            <div>
-              <li>Start Date: <%= booking.date_start %></li>
-              <li>End Date: <%= booking.date_end %></li>
-              <li>Status: <%= booking.status.capitalize %></li>
-              <li>Price: <%= booking.price %>€</li>
-
-              <% if booking.status == "pending" %>
+       
               <%= link_to "Accept", accept_hideout_booking_path(hideout_id: hideout.id, id: booking.id), data: {turbo_method: :patch} , class: "btn btn-success" %>
               <%= link_to "Decline", decline_hideout_booking_path(hideout_id: hideout.id, id: booking.id), data: {turbo_method: :patch}, class: "btn btn-danger" %>
               <% end %>
