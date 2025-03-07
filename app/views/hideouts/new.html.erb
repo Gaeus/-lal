@@ -1,27 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="col">
-    <h2> NEW PAGE </h2>
     <%= simple_form_for @hideout do |f| %>
       <%= f.error_notification %>
       <%= f.input :title,
+                  label: "Titre",
                   required: true,
                   autofocus: true,
-                  input_html: { autocomplete: "title" } %>
+                  input_html: { autocomplete: "Titre" } %>
       <%= f.input :address,
+                  label: "Adresse",
                   required: true,
-                  input_html: { autocomplete: "address" } %>
+                  input_html: { autocomplete: "Adresse" } %>
       <%= f.input :overview,
+                  label: "Déscription",
                   required: true,
-                  input_html: { autocomplete: "overview" } %>
+                  input_html: { autocomplete: "Description" } %>
       <%= f.input :price,
+                  label: "Prix",
                   required: true,
-                  input_html: { autocomplete: "price" } %>
+                  input_html: { autocomplete: "Prix" } %>
       <%= f.input :cover_picture, as: :file,
+                  label: "Photo de Présentation",
                   required: true %>
-      <%= f.input :pictures, as: :file, input_html: { multiple: true },
+      <%= f.input :pictures, as: :file,
+                  label: "Photos de Déscription",
+                  input_html: { multiple: true },
                   required: false %>
-      <%= f.button :submit %>
+      <%= f.button :submit, class: "btn btn-primary", value: "Enregistrer" %>
       <% end %>
     </div>
   </div>

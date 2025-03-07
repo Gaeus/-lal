@@ -1,59 +1,60 @@
 <div class="container-local">
-  <h2> SHOW PAGE </h2>
-          <% if @hideout.user.avatar.attached? %>
-              <%= cl_image_tag @hideout.user.avatar.key, class:"avatar-large", alt:"avatar" %>
-            <% else %>
-              <%= image_tag "user_icon.png", class:"avatar-large", alt: "avatar" %>
-            <% end %>
-        <p>Pour plus d'informations, vous pouvez contactez <%=@hideout.user.nickname %> : <%=@hideout.user.email %></p>
-  <div class="show-hideout">
-    <% if @hideout.pictures.attached? %>
-      <div id="carouselExample" class="carousel slide carousel-radius">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <%= cl_image_tag @hideout.cover_picture.key, alt:"Cover picture" %>
-          </div>
-          <% @hideout.pictures.each do |picture| %>
-            <div class="carousel-item">
-              <%= cl_image_tag picture.key, alt:"Pictures" %>
-            </div>
-          <% end %>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      <% elsif @hideout.cover_picture.attached?%>
-        <div>
-          <%= cl_image_tag @hideout.cover_picture.key%>
-        </div>
+  <div class="info-owner">
+    <div class="info-owner-avatar">
+      <% if @hideout.user.avatar.attached? %>
+        <%= cl_image_tag @hideout.user.avatar.key, class:"avatar-large avatar-border", alt:"avatar" %>
       <% else %>
-          <img src="https://media.istockphoto.com/id/1629004972/fr/vectoriel/casque-et-%C3%A9quipement-s%C3%A9curit%C3%A9-et-protection-ing%C3%A9nieur-symboles-de-construction-de-travail.jpg?s=612x612&w=0&k=20&c=Ysj5EhRTeeC9oZ16IejpmWiNX0Jwx_oOd6FuSDQb-OQ=" alt="Work in progess">
-    <% end %>
+        <%= image_tag "user_icon.png", class:"avatar-large", alt: "avatar" %>
+      <% end %>
+    </div>
+    <p>Pour plus d'informations, vous pouvez contactez <strong><%=@hideout.user.nickname.capitalize %></strong> : <a href="mailto:<%=@hideout.user.email%>"><i><%=@hideout.user.email %></i></a></p>
+  </div>
+  <div class="show-hideout">
+    <div class="show-hideout-image">
+      <% if @hideout.pictures.attached? %>
+        <div id="carouselExample" class="carousel slide carousel-radius w-100">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <%= cl_image_tag @hideout.cover_picture.key, alt:"Cover picture" %>
+            </div>
+            <% @hideout.pictures.each do |picture| %>
+              <div class="carousel-item">
+                <%= cl_image_tag picture.key, alt:"Pictures" %>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <% elsif @hideout.cover_picture.attached?%>
+          <div>
+            <%= cl_image_tag @hideout.cover_picture.key%>
+          </div>
+        <% else %>
+            <img src="https://media.istockphoto.com/id/1629004972/fr/vectoriel/casque-et-%C3%A9quipement-s%C3%A9curit%C3%A9-et-protection-ing%C3%A9nieur-symboles-de-construction-de-travail.jpg?s=612x612&w=0&k=20&c=Ysj5EhRTeeC9oZ16IejpmWiNX0Jwx_oOd6FuSDQb-OQ=" alt="Work in progess">
+      <% end %>
+    </div>
     <div class=show-hideout-content>
       <div>
         <h2><%= @hideout.title %></h2>
         <p><%= @hideout.address %></p>
         <p><%= @hideout.overview %></p>
-      </div>
-      <div>
-        <p class="text-right"><%= @hideout.price %> €</p>
+        <p class=""><%= @hideout.price %> €</p>
+        <% if current_user != @hideout.user %>
+          <div data-controller="toggle">
+            <button data-action="click->toggle#fire" class="btn btn-outline-primary">Reserver</button>
+            <div data-toggle-target="togglableElement" class="d-none">
+              <%= render "shared/form_reservation", booking: @booking, hideout: @hideout %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-
-<% if current_user != @hideout.user %>
-
-  <div data-controller="toggle" class="mt-5">
-      <button data-action="click->toggle#fire" class="btn btn-outline-primary">Reserver</button>
-    <div data-toggle-target="togglableElement" class="d-none">
-      <%= render "shared/form_reservation", booking: @booking, hideout: @hideout %>
-    </div>
-  </div>
-<% end %>

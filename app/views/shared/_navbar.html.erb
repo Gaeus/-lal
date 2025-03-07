@@ -1,9 +1,59 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
+  <div class="container-local navbar-local">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "logo-navbar.png" %>
     <% end %>
 
+<% if current_user %>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Ajouter un Repère
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajoutez votre repère !</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <%= simple_form_for Hideout.new do |f| %>
+              <%= f.error_notification %>
+              <%= f.input :title,
+                          label: "Titre",
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "Nom" } %>
+              <%= f.input :address,
+                          label: "Adresse",
+                          required: true,
+                          input_html: { autocomplete: "Adresse" } %>
+              <%= f.input :overview,
+                          label: "Déscription",
+                          required: true,
+                          input_html: { autocomplete: "Description" } %>
+              <%= f.input :price,
+                          label: "Prix",
+                          required: true,
+                          input_html: { autocomplete: "Prix" } %>
+              <%= f.input :cover_picture, as: :file,
+                          label: "Photo de Présentation",
+                          required: true %>
+              <%= f.input :pictures, as: :file,
+                          label: "Photos de Déscription",
+                          input_html: { multiple: true },
+                          required: false %>
+              <%= f.button :submit, class: "btn btn-primary", value: "Enregistrer"%>
+              <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,7 +62,6 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Ajouter un nouveau repère", new_hideout_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -6,11 +6,12 @@ class HideoutsController < ApplicationController
   def show
     @hideout = Hideout.find(params[:id])
     @booking = Booking.new
+    @bookings_dates = @hideout.bookings.reject{ |booking| booking.status == "declined"}.map { |booking| [booking.date_start, booking.date_end] }
   end
 
   def new
     @hideout = Hideout.new
-    
+
   end
 
   def create
@@ -38,6 +39,7 @@ class HideoutsController < ApplicationController
     @hideout.destroy
     redirect_to root_path
   end
+
 
   private
 
