@@ -9,8 +9,9 @@ class Hideout < ApplicationRecord
   validates :address, presence: true, length: { in: 1..150 }, uniqueness: true
   validates :price, presence: true, numericality: true
   validates :overview, presence: true, length: { maximum: 500 }
-  validates :title, presence: true, length: { in: 1..150 } # , uniqueness: true /Gaeus : disabled for testing
+  validates :title, presence: true, length: { in: 1..30 } # , uniqueness: true /Gaeus : disabled for testing
   validates :cover_picture, presence: true
   multisearchable against: [:title, :overview]
+
 
 end
