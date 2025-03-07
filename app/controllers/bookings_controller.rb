@@ -14,7 +14,8 @@ class BookingsController < ApplicationController
     @booking. price = number_of_nights * @hideout.price
     @booking.status = "pending"
     if @booking.save
-      redirect_to hideout_path(@hideout)
+      # redirect_to hideout_path(@hideout)
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end

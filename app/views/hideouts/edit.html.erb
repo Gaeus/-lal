@@ -1,28 +1,30 @@
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2> EDIT PAGE </h2>
+<div class="container-local center-form-hideout">
+    <div class="container-edit-hideout-form">
         <%= simple_form_for @hideout do |f| %>
           <%= f.input :title,
                       required: true,
                       autofocus: true,
+                      label: "Titre",
                       input_html: { autocomplete: "title" } %>
           <%= f.input :address,
                       required: true,
+                      label: "Adresse",
                       input_html: { autocomplete: "address" } %>
           <%= f.input :overview,
                       required: true,
+                      label: "Description",
                       input_html: { autocomplete: "overview" } %>
           <%= f.input :price,
                       required: true,
+                      label: "Prix",
                       input_html: { autocomplete: "price" } %>
           <%= f.input :cover_picture, as: :file,
+                      label: "Photo de présentation",
                       required: true %>
-          <%= f.input :pictures, as: :file, input_html: { multiple: true },
+          <%= f.input :pictures, as: :file, label: "Photo de description", input_html: { multiple: true },
                       required: false %>
-          <%= f.button :submit %>
+          <%= f.button :submit, value:"Mettre à jour", class:"btn btn-primary"%>
         <% end %>
     </div>
-  </div>
 </div>
