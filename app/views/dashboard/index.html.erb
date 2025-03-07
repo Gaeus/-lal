@@ -1,72 +1,88 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>Your Hideouts are:</h2>
-      <ul>
-        <% current_user.hideouts.each do |hideout| %>
-          <div>
+<div data-controller="dashboard" id="dashboard-container">
+  <div id="sidebar">
+    <h2>Ma Dashboard</h2>
+    <ul>
+      <li><button id="show-hideouts" data-action="dashboard#showHideouts">Mes Repères</button></li>
+      <li><button id="show-reservations" data-action="dashboard#showReservations">Gerer mes demandes de Repères</button></li>
+      <li><button id="show-rents" data-action="dashboard#showRents">Mes réservations de Repères</button></li>
+      <li><%= link_to "Modifier mon compte", edit_user_registration_path %></li>
+      <li><%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete} %></li>
+    </ul>
+  </div>
 
-            <% if hideout.cover_picture.attached? %>
-              <%= cl_image_tag hideout.cover_picture.key%>
-            <% else %>
-            <img src="https://media.istockphoto.com/id/1629004972/fr/vectoriel/casque-et-%C3%A9quipement-s%C3%A9curit%C3%A9-et-protection-ing%C3%A9nieur-symboles-de-construction-de-travail.jpg?s=612x612&w=0&k=20&c=Ysj5EhRTeeC9oZ16IejpmWiNX0Jwx_oOd6FuSDQb-OQ=" alt="Work in progess">
+  <div id="dashboard-display">
+
+    <div class="container" id="user-hideouts"  data-dashboard-target="hideouts" style="display: none">
+      <div>
+        <div>
+          <h2>Vos repères:</h2>
+          <ul>
+            <% current_user.hideouts.each do |hideout| %>
+              <div>
+
+                <% if hideout.cover_picture.attached? %>
+                  <%= cl_image_tag hideout.cover_picture.key%>
+                <% else %>
+                <img src="https://media.istockphoto.com/id/1629004972/fr/vectoriel/casque-et-%C3%A9quipement-s%C3%A9curit%C3%A9-et-protection-ing%C3%A9nieur-symboles-de-construction-de-travail.jpg?s=612x612&w=0&k=20&c=Ysj5EhRTeeC9oZ16IejpmWiNX0Jwx_oOd6FuSDQb-OQ=" alt="Work in progess">
+                <% end %>
+                <li><%= hideout.title %></li>
+                <li><%= hideout.overview %></li>
+                <li><%= hideout.price %></li>
+                <%= link_to "Modifier", edit_hideout_path(hideout), class: "btn btn-primary" %>
+                <% confirm = hideout.bookings  ? "La demande échouera s'il y a des réservations en cours"  : "confirmer la suppression?" %>
+                <%= link_to "Supprimer", hideout_path(hideout) ,data: {turbo_confirm: confirm, turbo_method: :delete}, class: "btn btn-danger" %>
+              </div>
+              <br>
             <% end %>
-            <li><%= hideout.title %></li>
-            <li><%= hideout.overview %></li>
-            <li><%= hideout.price %></li>
-            <%= link_to "Modifier", edit_hideout_path(hideout), class: "btn btn-primary" %>
-            <% confirm = hideout.bookings  ? "You can't delete a Hideout if their is reservations on it"  : "Are you sure?" %>
-            <%= link_to "Supprimer", hideout_path(hideout) ,data: {turbo_confirm: confirm, turbo_method: :delete}, class: "btn btn-danger" %>
-          </div>
-          <br>
-        <% end %>
-      </ul>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>Your Hideout Reservations are:</h2>
-      <ul>
-        <% current_user.hideouts.each do |hideout| %>
-          <% hideout.bookings.each do |booking| %>
-            <div>
-              <li>Start Date: <%= booking.date_start %></li>
-              <li>End Date: <%= booking.date_end %></li>
-              <li>Status: <%= booking.status.capitalize %></li>
-              <li>Price: <%= booking.price %>€</li>
-
-              <% if booking.status == "pending" %>
-              <%= link_to "Accept", accept_hideout_booking_path(hideout_id: hideout.id, id: booking.id), data: {turbo_method: :patch} , class: "btn btn-success" %>
-              <%= link_to "Decline", decline_hideout_booking_path(hideout_id: hideout.id, id: booking.id), data: {turbo_method: :patch}, class: "btn btn-danger" %>
+    <div class="container" id="user-reservations" data-dashboard-target="reservations" style="display: none" >
+      <div>
+        <div>
+          <h2>Vos locations:</h2>
+          <ul>
+            <% current_user.hideouts.each do |hideout| %>
+              <% hideout.bookings.each do |booking| %>
+                <div>
+                  <h4><%= hideout.title %></h4>
+                  <li>Démarre le: <%= booking.date_start %></li>
+                  <li>Se termine le: <%= booking.date_end %></li>
+                  <li>Status: <%= booking.status.capitalize %></li>
+                  <li>Prix: <%= booking.price %>€</li>
+                  <% if booking.status == "pending" %>
+                  <%= link_to "Approuver", accept_hideout_booking_path(hideout_id: hideout.id, id: booking.id), data: {turbo_method: :patch} , class: "btn btn-success" %>
+                  <%= link_to "Rejeter", decline_hideout_booking_path(hideout_id: hideout.id, id: booking.id), data: {turbo_method: :patch}, class: "btn btn-danger" %>
+                  <% end %>
+                </div>
+                <br>
               <% end %>
-            </div>
-            <br>
-          <% end %>
-        <% end %>
-      </ul>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>Your Reservations are:</h2>
-      <ul>
-        <% current_user.bookings.each do |booking| %>
-          <div>
-            <h4><%= booking.hideout.title %></h4>
-            <li>Start Date: <%= booking.date_start %></li>
-            <li>End Date: <%= booking.date_end %></li>
-            <li>Status: <%= booking.status.capitalize %></li>
-            <li>Price: <%= booking.price %>€</li>
-          </div>
-          <br>
-        <% end %>
-      </ul>
+    <div class="container" id="user-rents" data-dashboard-target="rents" style="display: none">
+      <div>
+        <div>
+          <h2>Vos réservations:</h2>
+          <ul>
+            <% current_user.bookings.each do |booking| %>
+              <div>
+                <h4><%= booking.hideout.title %></h4>
+                <li>Démarre le: <%= booking.date_start %></li>
+                <li>Se termine le: <%= booking.date_end %></li>
+                <li>Status: <%= booking.status.capitalize %></li>
+                <li>Prix: <%= booking.price %>€</li>
+              </div>
+              <br>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>

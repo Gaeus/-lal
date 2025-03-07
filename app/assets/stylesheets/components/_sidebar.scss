@@ -1,0 +1,43 @@
+#sidebar {
+  position: relative;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 250px; /* Ajustez la largeur selon vos besoins */
+  background-color: #f8f9fa; /* Couleur de fond de la sidebar */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre pour une meilleure séparation */
+  overflow-y: auto; /* Permet le défilement si le contenu dépasse la hauteur de la fenêtre */
+}
+
+#sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#sidebar ul li {
+  margin-bottom: 15px;
+}
+
+#sidebar ul li button,
+#sidebar ul li a {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+}
+
+#sidebar ul li button:hover,
+#sidebar ul li a:hover {
+  background-color: #0056b3;
+}
+
+.container {
+  margin-left: 270px; /* Ajustez cette valeur pour correspondre à la largeur de la sidebar + padding */
+  padding: 20px;
+}
